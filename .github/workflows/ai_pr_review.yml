@@ -6,7 +6,7 @@ on:
 
 jobs:
   ai_review:
-    runs-on: window-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
