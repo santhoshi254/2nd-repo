@@ -1,0 +1,24 @@
+name: AI PR Review with Qodo AI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ai_review:
+    runs-on: window-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set Permissions for Script
+        run: chmod +x qodo_ai_review.py  # Ensures script has execution permissions
+
+      - name: Run Qodo AI Code Review
+        run: python qodo_ai_review.py  # Executes the AI review script
+        env:
+          GH_TOKEN: ${{ secrets.QODO_GH_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Post AI Review Comments
+        run: echo "AI-generated comments will be added to the PR"
